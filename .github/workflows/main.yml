@@ -21,8 +21,10 @@ jobs:
         with:
           node-version: '20' # Use a supported version of Node.js
 
-      - name: Install TypeScript globally
-        run: npm install -g typescript@5.2.2
+      - name: Install TypeScript as dev dependency
+        run: |
+          cd my-eks-blueprints
+          npm install typescript@5.2.2 --save-dev
 
       - name: Link TypeScript to the project
         run: |
@@ -53,4 +55,4 @@ jobs:
           sudo apt-get update && sudo apt-get install -y jq gettext bash-completion moreutils
 
       - name: Deploy to Main
-        run: cdk deploy cluster-stack --app "npx ts-node bin/my-eks-blueprints.ts"
+        run: npx ts-node bin/my-eks-blueprints.ts
