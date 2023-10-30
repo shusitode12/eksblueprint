@@ -56,5 +56,5 @@ jobs:
           sudo apt-get update && sudo apt-get install -y jq gettext bash-completion moreutils
 
       - name: Deploy to Main
-        run: npx ts-node my-eks-blueprints/bin/my-eks-blueprints.ts
+        run: npx ts-node bin/my-eks-blueprints.ts
 
