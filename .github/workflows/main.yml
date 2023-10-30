@@ -35,7 +35,7 @@ jobs:
         run: cd my-eks-blueprints
 
       - name: Bootstrap CDK
-        run: npx cdk bootstrap aws://${{ secrets.AWS_ACCOUNT_ID }}/${{ secrets.AWS_REGION }}
+        run: npx cdk bootstrap 
 
       - name: Deploy to Main
         run: npx cdk deploy cluster-stack --context environment=main
