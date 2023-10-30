@@ -37,6 +37,8 @@ jobs:
       - name: Bootstrap CDK
         run: npx cdk bootstrap aws://${{ secrets.AWS_ACCOUNT_ID }}/${{ secrets.AWS_REGION }}
 
-
+      - name: Synthesize CDK
+        run: npx cdk synth
+        
       - name: Deploy to Main
         run: cdk deploy cluster-stack
