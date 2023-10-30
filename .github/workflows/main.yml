@@ -45,5 +45,12 @@ jobs:
       - name: Bootstrap CDK
         run: npx cdk bootstrap aws://${{ secrets.AWS_ACCOUNT_ID }}/${{ secrets.AWS_REGION }}
 
+      - name: Install kubectl, jq, gettext, bash-completion, moreutils
+        run: |
+          sudo curl --silent --location -o /usr/local/bin/kubectl \
+            https://s3.us-west-2.amazonaws.com/amazon-eks/1.23.7/2022-06-29/bin/linux/amd64/kubectl
+          sudo chmod +x /usr/local/bin/kubectl
+          sudo yum -y install jq gettext bash-completion moreutils
+
       - name: Deploy to Main
         run: cdk deploy cluster-stack
