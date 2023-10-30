@@ -39,4 +39,4 @@ jobs:
 
 
       - name: Deploy to Main
-        run: npx cdk deploy cluster-stack --context environment=main
+        run: cdk deploy cluster-stack
