@@ -21,8 +21,13 @@ jobs:
         with:
           node-version: '14' # Use a supported version of Node.js
 
-      - name: Install ts-node
-        run: npm install ts-node@10.9.1 --save-dev
+      - name: Install TypeScript globally
+        run: npm install -g typescript
+
+      - name: Link TypeScript to the project
+        run: |
+          cd my-eks-blueprints
+          npm link typescript
 
       - name: Configure AWS CLI
         uses: aws-actions/configure-aws-credentials@v1
