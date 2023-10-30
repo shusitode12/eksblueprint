@@ -21,10 +21,11 @@ jobs:
         with:
           node-version: '20' # Use a supported version of Node.js
 
-      - name: Install TypeScript as dev dependency
+      - name: Install TypeScript and ts-node
         run: |
           cd my-eks-blueprints
           npm install typescript@5.2.2 --save-dev
+          npm install ts-node@10.9.1 --save-dev
 
       - name: Link TypeScript to the project
         run: |
