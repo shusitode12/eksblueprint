@@ -38,7 +38,7 @@ jobs:
         run: npx cdk bootstrap aws://${{ secrets.AWS_ACCOUNT_ID }}/${{ secrets.AWS_REGION }}
 
       - name: Synthesize CDK
-        run: npx cdk synth
+        run: cdk synth --app "npx ts-node my-eks-blueprints-stack.ts" cluster-stack
         
       - name: Deploy to Main
         run: cdk deploy cluster-stack
