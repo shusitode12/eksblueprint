@@ -19,7 +19,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '20'
 
       - name: Configure AWS CLI
         uses: aws-actions/configure-aws-credentials@v1
@@ -35,7 +35,8 @@ jobs:
         run: cd my-eks-blueprints
 
       - name: Bootstrap CDK
-        run: npx cdk bootstrap AWS_ACCOUNT_ID }}/${{ secrets.AWS_REGION }}
+        run: npx cdk bootstrap aws://${{ secrets.AWS_ACCOUNT_ID }}/${{ secrets.AWS_REGION }}
+
 
       - name: Deploy to Main
         run: npx cdk deploy cluster-stack --context environment=main
