@@ -3,7 +3,7 @@ name: Deploy EKS Blueprint with CDK
 on:
   push:
     branches:
-      - main
+      - dev
   workflow_dispatch:
 
 jobs:
