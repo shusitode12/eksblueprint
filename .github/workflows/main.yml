@@ -40,7 +40,7 @@ jobs:
         run: npm install -g aws-cdk@2.99.1
 
       - name: Change directory
-        run: cd eksblueprint/my-eks-blueprints
+        run:  cd my-eks-blueprints
 
       - name: Bootstrap CDK
         run: npx cdk bootstrap aws://${{ secrets.AWS_ACCOUNT_ID }}/${{ secrets.AWS_REGION }}
