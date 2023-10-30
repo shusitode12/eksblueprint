@@ -19,7 +19,10 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '20'
+          node-version: '14' # Use a supported version of Node.js
+
+      - name: Install ts-node
+        run: npm install ts-node@10.9.1 --save-dev
 
       - name: Configure AWS CLI
         uses: aws-actions/configure-aws-credentials@v1
@@ -39,5 +42,6 @@ jobs:
 
       - name: Synthesize CDK
         run:  npx ts-node bin/my-eks-blueprints.ts
+
       - name: Deploy to Main
         run: cdk deploy cluster-stack
