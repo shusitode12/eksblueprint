@@ -23,38 +23,9 @@ jobs:
 
       - name: Install TypeScript and ts-node
         run: |
+          mkdir my-eks-blueprints
           cd my-eks-blueprints
           npm install typescript@5.2.2 --save-dev
           npm install ts-node@10.9.1 --save-dev
-
-      - name: Link TypeScript to the project
-        run: |
-          cd my-eks-blueprints
-          npm link typescript
-
-      - name: Configure AWS CLI
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
-
-      - name: Set AWS CDK version
-        run: npm install -g aws-cdk@2.99.1
-
-      - name: Change directory
-        run: cd my-eks-blueprints
-
-      - name: Bootstrap CDK
-        run: npx cdk bootstrap aws://${{ secrets.AWS_ACCOUNT_ID }}/${{ secrets.AWS_REGION }}
-
-      - name: Install kubectl, jq, gettext, bash-completion, moreutils
-        run: |
-          sudo curl --silent --location -o /usr/local/bin/kubectl \
-            https://s3.us-west-2.amazonaws.com/amazon-eks/1.23.7/2022-06-29/bin/linux/amd64/kubectl
-          sudo chmod +x /usr/local/bin/kubectl
-          sudo apt-get update && sudo apt-get install -y jq gettext bash-completion moreutils
-
-      - name: Deploy to Main
-        run: npx ts-node bin/my-eks-blueprints.ts
-
+          cdk init app --language typescript
+          npm i @aws-quickstart/eks-blueprints@1.12.0
