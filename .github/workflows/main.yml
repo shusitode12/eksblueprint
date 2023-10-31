@@ -26,7 +26,7 @@ jobs:
 
     - name: Initialize CDK App
       run: |
-        cdk init app --language typescript
+        cdk init app --language typescript --generate-only 
 
     - name: Set Up Node
       uses: actions/setup-node@v2
