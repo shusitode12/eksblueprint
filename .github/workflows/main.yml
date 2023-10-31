@@ -20,13 +20,12 @@ jobs:
       run: |
         mkdir my-eks-blueprints
 
-    - name: Change Directory
-      run: |
-        cd my-eks-blueprints
+
 
     - name: Initialize CDK App
       run: |
-        cdk init app --language typescript --generate-only 
+        cd my-eks-blueprints
+        cdk init app --language typescript
 
     - name: Set Up Node
       uses: actions/setup-node@v2
