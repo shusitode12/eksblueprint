@@ -21,7 +21,6 @@ jobs:
 
       - name: Install TypeScript and ts-node
         run: |
-          cd my-eks-blueprints
           npm install typescript@5.2.2 --save-dev
           sudo apt install nodejs npm -y
 
