@@ -1,4 +1,5 @@
-import { Construct, Stack, StackProps } from 'aws-cdk-lib';
+#import { Construct, Stack, StackProps } from 'aws-cdk-lib';
+import * as cdk from 'aws-cdk-lib';
 import * as blueprints from '@aws-quickstart/eks-blueprints';
 import { VPCStack } from './vpc-stack';
 
