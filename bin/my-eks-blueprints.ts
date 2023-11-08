@@ -1,11 +1,14 @@
-// bin/my-eks-blueprints.ts
 import * as cdk from 'aws-cdk-lib';
-import ClusterConstruct from '../lib/my-eks-blueprints-stack';
+import { App } from 'aws-cdk-lib';
+import { ClusterConstruct } from '../lib/my-eks-blueprints-stack';
 
+const app = new App();
 
-const app = new cdk.App();
-const account = process.env.CDK_DEFAULT_ACCOUNT!;
-const region = process.env.CDK_DEFAULT_REGION;
-const env = { account, region }
+new ClusterConstruct(app, 'ClusterStack', {
+  env: {
+    account: process.env.CDK_DEFAULT_ACCOUNT,
+    region: process.env.CDK_DEFAULT_REGION,
+  },
+});
 
-new ClusterConstruct(app, 'cluster', { env });
+app.synth();
