@@ -3,7 +3,7 @@ name: Deploy EKS Blueprint with CDK
 on:
   push:
     branches:
-      - main
+      - test
   workflow_dispatch:
 
 jobs:
@@ -23,6 +23,8 @@ jobs:
         run: |
           npm install typescript@5.2.2 --save-dev
           sudo apt install nodejs npm -y
+          npm install aws-cdk-lib @aws-cdk/aws-ec2
+
 
       - name: Configure AWS CLI
         uses: aws-actions/configure-aws-credentials@v1
