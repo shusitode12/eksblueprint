@@ -1,0 +1,53 @@
+name: Deploy EKS Blueprint with CDK
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Use Node.js v20
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20' # Use a supported version of Node.js
+
+      - name: Install TypeScript and ts-node
+        run: |
+          npm install typescript@5.2.2 --save-dev
+          sudo apt install nodejs npm -y
+
+      - name: Configure AWS CLI
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Set AWS CDK version
+        run: npm install -g aws-cdk@2.99.1
+
+
+
+      - name: Bootstrap CDK
+        run: npx cdk bootstrap aws://${{ secrets.AWS_ACCOUNT_ID }}/${{ secrets.AWS_REGION }}
+
+
+      - name: Install Dependencies
+        run: npm install 
+
+      - name: run build step
+        run: npm run build
+
+      - name: run synth
+        run: npx cdk synth
+
+      - name: Deploy eks Cluster Stack
+        run: cdk deploy cluster-stack --require-approval never  
